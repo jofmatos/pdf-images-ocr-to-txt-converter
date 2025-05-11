@@ -26,6 +26,8 @@ docker run --rm \
 
 # Saída: seu_documento_ocr.txt na pasta atual
 
+```
+
 ---
 
 ## Pré-requisitos
