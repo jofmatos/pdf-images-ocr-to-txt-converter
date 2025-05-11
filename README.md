@@ -19,12 +19,9 @@ docker build -t pdf-ocr-extractor .
 
 # 3. Rodar o container
 #    monta a pasta atual em /app e processa o PDF
-docker run --rm \
-  -v "$(pwd)":/app \
-  pdf-OCR-extractor \
-  seu_documento.pdf
+docker run --rm -v ${PWD}:/data pdf-ocr-extractor /data/seu_pdf.pdf
 
-# Saída: seu_documento_ocr.txt na pasta atual
+# Saída: seu_pdf_ocr.txt na pasta atual
 
 ```
 
