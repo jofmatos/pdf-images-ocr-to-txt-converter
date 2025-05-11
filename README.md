@@ -40,13 +40,13 @@ cd pdf-OCR-extractor
 ---
 
 # 3. Rodar o container
-#    monta a pasta atual em /data e processa o PDF
+#    monta a pasta atual em /app e processa o PDF
 
    * **Linux/macOS**
 
      ```bash
      docker run --rm \
-       -v "$(pwd)":/data \
+       -v "$(pwd)":/app \
        pdf-ocr-extractor \
        seu_arquivo.pdf
      ```
@@ -54,10 +54,10 @@ cd pdf-OCR-extractor
    * **PowerShell (Windows)**
 
      ```powershell
-     docker run --rm `
-       -v ${PWD}.Path:/data `
-       pdf-ocr-extractor `
-       seu_arquivo.pdf
+docker run --rm `
+  -v "$($pwd.Path):/app" `
+  pdf-ocr-extractor `
+  relatorio.pdf
      ```
 
 # Saída: seu_pdf_ocr.txt na pasta atual
