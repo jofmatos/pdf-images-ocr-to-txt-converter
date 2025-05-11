@@ -9,17 +9,51 @@ Converte PDFs (texto + imagens) em um TXT via OCR (Tesseract).
 
 ## Como usar
 
-```bash
+1. Abra um terminal (PowerShell, Terminal no macOS/Linux).
+
 # 1. Clone
+```bash
 git clone https://github.com/jofmatos/pdf-OCR-extractor.git
 cd pdf-OCR-extractor
+```
 
 # 2. Build da imagem
-docker build -t pdf-ocr-extractor .
+
+3. (Opcional) Verifique se o Docker está funcionando:
+
+   ```bash
+   docker --version
+   ```
+4. Faça o build da imagem Docker (só precisa rodar uma vez):
+
+   ```bash
+   docker build -t pdf-ocr-extractor .
+   ```
+
+   Isso criará a imagem chamada **pdf-ocr-extractor** localmente.
+
+---
 
 # 3. Rodar o container
 #    monta a pasta atual em /app e processa o PDF
-docker run --rm -v ${PWD}:/data pdf-ocr-extractor /data/seu_pdf.pdf
+
+   * **Linux/macOS**
+
+     ```bash
+     docker run --rm \
+       -v "$(pwd)":/app \
+       pdf-ocr-extractor \
+       seu_arquivo.pdf
+     ```
+
+   * **PowerShell (Windows)**
+
+     ```powershell
+     docker run --rm `
+       -v ${PWD}.Path:/app `
+       pdf-ocr-extractor `
+       seu_arquivo.pdf
+     ```
 
 # Saída: seu_pdf_ocr.txt na pasta atual
 
@@ -53,12 +87,7 @@ pdf-ocr-extractor/
 
 ## Configuração do Docker
 
-1. Abra um terminal (PowerShell, Terminal no macOS/Linux).
-2. Navegue até a pasta do projeto:
 
-   ```bash
-   cd /caminho/para/pdf-ocr-extractor  # Windows (PowerShell)
-   cd ~/path/to/pdf-ocr-extractor      # macOS/Linux
    ```
 3. (Opcional) Verifique se o Docker está funcionando:
 
