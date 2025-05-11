@@ -1,46 +1,44 @@
-# PDF OCR Extractor
+## PDF OCR Extractor
 
-Converte PDFs (texto + imagens) em um TXT via OCR (Tesseract).
-
-## Pré-requisitos
-
-* **Docker** instalado e em execução.
-
-  * Windows: use o instalador em [https://docs.docker.com/desktop/install/windows/](https://docs.docker.com/desktop/install/windows/)
-  * macOS: use [https://docs.docker.com/desktop/install/mac/](https://docs.docker.com/desktop/install/mac/)
-  * Linux: siga [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-* (Opcional, para uso local) **Python 3.7+**, **Tesseract OCR** e dependências Python.
+Converts PDFs (text + images) into a TXT via OCR (Tesseract).
 
 ---
-## Como usar
 
-1. Abra um terminal (PowerShell, Terminal no macOS/Linux).
+## Prerequisites
 
-# 1. Clone
-```bash
-git clone https://github.com/jofmatos/pdf-OCR-extractor.git
-cd pdf-OCR-extractor
-```
+* **Docker** installed and running
 
-# 2. Build da imagem
+  * Windows: follow [https://docs.docker.com/desktop/install/windows/](https://docs.docker.com/desktop/install/windows/)
+  * macOS: follow [https://docs.docker.com/desktop/install/mac/](https://docs.docker.com/desktop/install/mac/)
+  * Linux: follow [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+* *(Optional, for local use)* **Python 3.7+**, **Tesseract OCR** and Python dependencies
 
-3. (Opcional) Verifique se o Docker está funcionando:
+---
+
+## Usage
+
+### Docker
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/jofmatos/pdf-OCR-extractor.git
+   cd pdf-OCR-extractor
+   ```
+
+2. **Verify Docker installation (optional)**
 
    ```bash
    docker --version
    ```
-4. Faça o build da imagem Docker (só precisa rodar uma vez):
+
+3. **Build the Docker image** (only once)
 
    ```bash
    docker build -t pdf-ocr-extractor .
    ```
 
-   Isso criará a imagem chamada **pdf-ocr-extractor** localmente.
-
----
-
-# 3. Rodar o container
-#    monta a pasta atual em /app e processa o PDF
+4. **Run the container**
 
    * **Linux/macOS**
 
@@ -48,23 +46,46 @@ cd pdf-OCR-extractor
      docker run --rm \
        -v "$(pwd)":/app \
        pdf-ocr-extractor \
+       your_file.pdf
+     ```
+   * **PowerShell (Windows)**
+
+     ```powershell
+     docker run --rm `
+       -v "$($pwd.Path):/app" `
+       pdf-ocr-extractor `
        seu_arquivo.pdf
      ```
 
-   * **PowerShell (Windows)**
+   The script will process `your_file.pdf` and produce `your_file_ocr.txt` in the current directory.
 
-     ```bash
-     docker run --rm `
-      -v "$($pwd.Path):/app" `
-      pdf-ocr-extractor `
-      seu_arquivo.pdf
-     ```
+---
 
-# Saída: seu_pdf_ocr.txt na pasta atual
+### Local (no Docker)
 
-O script processará o PDF (`extract_pdf.py`) e gerará um arquivo de saída com o sufixo `_ocr.txt`, por exemplo, `seu_arquivo_ocr.txt`, na mesma pasta do host.
+1. **Create and activate a virtual environment**
 
-## Estrutura do repositório
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate    # macOS/Linux
+   .\.venv\Scripts\Activate.ps1 # PowerShell
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the script**
+
+   ```bash
+   python extract_pdf.py your_file.pdf
+   ```
+
+---
+
+## Repository structure
 
 ```
 pdf-ocr-extractor/
@@ -77,35 +98,15 @@ pdf-ocr-extractor/
 
 ---
 
-## Uso local (sem Docker)
+## Customization & Troubleshooting
 
-1. Crie e ative um ambiente virtual:
-
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate    # macOS/Linux
-   .\.venv\Scripts\Activate.ps1  # PowerShell
-   ```
-2. Instale dependências:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Execute:
-
-   ```bash
-   python extract_pdf.py seu_arquivo.pdf
-   ```
-
----
-
-## Personalizações e Troubleshooting
-
-* Para mudar o idioma do OCR, instale outro pacote no Dockerfile (ex.: `tesseract-ocr-eng`) e ajuste `lang="eng"` em `extract_pdf.py`.
-* Se receber erro de permissão ou volume inválido no Windows, use `${PWD}.Path` no PowerShell ou forneça o caminho absoluto.
-* Para inspecionar o conteúdo montado, abra um shell no container:
+* **OCR language**: to add another language (e.g. English), install its Tesseract package in the Dockerfile (e.g. `tesseract-ocr-eng`) and set `lang="eng"` in `extract_pdf.py`.
+* **Volume errors on Windows**: if you get permission or invalid-volume errors, try using an absolute host path or `${PWD}` in PowerShell.
+* **Inspect container contents**: open an interactive shell inside the image:
 
   ```bash
-  docker run --rm -it -v "$(pwd)":/data pdf-ocr-extractor bash
-  ls /data
+  docker run --rm -it \
+    -v "$(pwd)":/app \
+    pdf-ocr-extractor \
+    /bin/sh
   ```
