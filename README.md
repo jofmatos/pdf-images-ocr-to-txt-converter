@@ -38,7 +38,7 @@ Converte PDFs (texto + imagens) em um TXT via OCR (Tesseract).
 
 ## Resumo - Como usar
 
-```bash
+
 # 1. Clone
 git clone https://github.com/<seu-usuário>/pdf-ocr-extractor.git
 cd pdf-ocr-extractor
@@ -52,7 +52,7 @@ docker run --rm \
   -v "$(pwd)":/app \
   pdf-ocr-extractor \
   seu_documento.pdf
-'''
+
 
 # Saída: seu_documento_ocr.txt na pasta atual
 
