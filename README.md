@@ -52,6 +52,7 @@ docker run --rm \
   -v "$(pwd)":/app \
   pdf-ocr-extractor \
   seu_documento.pdf
+'''
 
 # Saída: seu_documento_ocr.txt na pasta atual
 
