@@ -41,7 +41,7 @@ cd pdf-OCR-extractor
 
      ```bash
      docker run --rm \
-       -v "$(pwd)":/app \
+       -v "$(pwd)":/data \
        pdf-ocr-extractor \
        seu_arquivo.pdf
      ```
@@ -50,12 +50,14 @@ cd pdf-OCR-extractor
 
      ```powershell
      docker run --rm `
-       -v ${PWD}.Path:/app `
+       -v ${PWD}.Path:/data `
        pdf-ocr-extractor `
        seu_arquivo.pdf
      ```
 
 # Saída: seu_pdf_ocr.txt na pasta atual
+
+O script processará o PDF (`extract_pdf.py`) e gerará um arquivo de saída com o sufixo `_ocr.txt`, por exemplo, `seu_arquivo_ocr.txt`, na mesma pasta do host.
 
 ```
 
@@ -82,65 +84,6 @@ pdf-ocr-extractor/
 ├── requirements.txt
 └── README.md
 ```
-
----
-
-## Configuração do Docker
-
-
-   ```
-3. (Opcional) Verifique se o Docker está funcionando:
-
-   ```bash
-   docker --version
-   ```
-4. Faça o build da imagem Docker (só precisa rodar uma vez):
-
-   ```bash
-   docker build -t pdf-ocr-extractor .
-   ```
-
-   Isso criará a imagem chamada **pdf-ocr-extractor** localmente.
-
----
-
-## Uso com Docker
-
-1. Coloque o PDF que deseja processar dentro da pasta do projeto ou em qualquer pasta de sua preferência.
-
-2. Execute o container montando a pasta onde o PDF está para dentro do container:
-
-   * **Linux/macOS**
-
-     ```bash
-     docker run --rm \
-       -v "$(pwd)":/app \
-       pdf-ocr-extractor \
-       seu_arquivo.pdf
-     ```
-
-   * **PowerShell (Windows)**
-
-     ```powershell
-     docker run --rm `
-       -v ${PWD}.Path:/app `
-       pdf-ocr-extractor `
-       seu_arquivo.pdf
-     ```
-
-3. O script processará o PDF (`extract_pdf.py`) e gerará um arquivo de saída com o sufixo `_ocr.txt`, por exemplo, `seu_arquivo_ocr.txt`, na mesma pasta do host.
-
----
-
-## Exemplos
-
-* PDF de entrada: `relatorio.pdf`
-* Comando:
-
-  ```bash
-  docker run --rm -v "$(pwd)":/app pdf-ocr-extractor relatorio.pdf
-  ```
-* Saída gerada: `relatorio_ocr.txt`
 
 ---
 
