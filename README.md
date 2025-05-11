@@ -35,7 +35,7 @@ cd pdf-OCR-extractor
 ---
 
 # 3. Rodar o container
-#    monta a pasta atual em /app e processa o PDF
+#    monta a pasta atual em /data e processa o PDF
 
    * **Linux/macOS**
 
