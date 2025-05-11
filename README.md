@@ -55,9 +55,9 @@ cd pdf-OCR-extractor
 
      ```bash
      docker run --rm `
-  -v "$($pwd.Path):/app" `
-  pdf-ocr-extractor `
-  relatorio.pdf
+      -v "$($pwd.Path):/app" `
+      pdf-ocr-extractor `
+      seu_arquivo.pdf
      ```
 
 # Saída: seu_pdf_ocr.txt na pasta atual
