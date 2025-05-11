@@ -4,9 +4,14 @@ Converte PDFs (texto + imagens) em um TXT via OCR (Tesseract).
 
 ## Pré-requisitos
 
-- Docker instalado  
-- (Opcional) Tesseract local, para testes fora do container  
+* **Docker** instalado e em execução.
 
+  * Windows: use o instalador em [https://docs.docker.com/desktop/install/windows/](https://docs.docker.com/desktop/install/windows/)
+  * macOS: use [https://docs.docker.com/desktop/install/mac/](https://docs.docker.com/desktop/install/mac/)
+  * Linux: siga [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+* (Opcional, para uso local) **Python 3.7+**, **Tesseract OCR** e dependências Python.
+
+---
 ## Como usar
 
 1. Abra um terminal (PowerShell, Terminal no macOS/Linux).
@@ -59,21 +64,6 @@ cd pdf-OCR-extractor
 
 O script processará o PDF (`extract_pdf.py`) e gerará um arquivo de saída com o sufixo `_ocr.txt`, por exemplo, `seu_arquivo_ocr.txt`, na mesma pasta do host.
 
-```
-
----
-
-## Pré-requisitos
-
-* **Docker** instalado e em execução.
-
-  * Windows: use o instalador em [https://docs.docker.com/desktop/install/windows/](https://docs.docker.com/desktop/install/windows/)
-  * macOS: use [https://docs.docker.com/desktop/install/mac/](https://docs.docker.com/desktop/install/mac/)
-  * Linux: siga [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-* (Opcional, para uso local) **Python 3.7+**, **Tesseract OCR** e dependências Python.
-
----
-
 ## Estrutura do repositório
 
 ```
@@ -119,9 +109,3 @@ pdf-ocr-extractor/
   docker run --rm -it -v "$(pwd)":/data pdf-ocr-extractor bash
   ls /data
   ```
-
----
-
-## Licença
-
-MIT
