@@ -53,8 +53,8 @@ cd pdf-OCR-extractor
 
    * **PowerShell (Windows)**
 
-     ```powershell
-docker run --rm `
+     ```bash
+     docker run --rm `
   -v "$($pwd.Path):/app" `
   pdf-ocr-extractor `
   relatorio.pdf
