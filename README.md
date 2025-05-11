@@ -15,7 +15,7 @@ git clone https://github.com/jofmatos/pdf-OCR-extractor.git
 cd pdf-OCR-extractor
 
 # 2. Build da imagem
-docker build -t pdf-OCR-extractor .
+docker build -t pdf-ocr-extractor .
 
 # 3. Rodar o container
 #    monta a pasta atual em /app e processa o PDF
